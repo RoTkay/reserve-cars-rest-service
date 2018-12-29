@@ -19,7 +19,7 @@ public class ReservationResourceAssembler extends ResourceAssemblerSupport<Reser
     @Override
     public ReservationResource toResource(Reservation reservation) {
         ReservationResource resource = createResourceWithId(reservation.getId(), reservation);
-        resource.setID(reservation.getId());
+        resource.setIdentifier(reservation.getId());
         resource.setDateFrom(reservation.getDateFrom());
         resource.setDateTo(reservation.getDateTo());
 

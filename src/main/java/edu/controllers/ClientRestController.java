@@ -65,10 +65,10 @@ public class ClientRestController {
                                        @PathVariable int id) {
         client.setId(id);
         clientDao.update(client);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+        URI updatedUri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .buildAndExpand(client.getId())
                 .toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.ok(updatedUri);
     }
 
     @DeleteMapping(path = "/{id}")
@@ -81,10 +81,12 @@ public class ClientRestController {
     @GetMapping("/{id}/reservations")
     public Resources<ReservationResource> getClientAllReservations(@PathVariable int id) {
         Client client = clientDao.findOne(id);
-        Resources<ReservationResource> reservationList = new Resources<> (reservationDao.findByClient(client)
+        Resources<ReservationResource> reservationList = new Resources<> (
+            reservationDao.findByClient(client)
                 .stream()
                 .map(reservationResourceAssembler::toResource)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList())
+        );
         return reservationList;
     }
 
@@ -95,9 +97,9 @@ public class ClientRestController {
         reservation.setClient(client);
         reservationDao.save(reservation);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/reservations/{id}")
+        URI createdUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/reservations/{id}")
                 .buildAndExpand(reservation.getId())
                 .toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(createdUri).build();
     }
 }

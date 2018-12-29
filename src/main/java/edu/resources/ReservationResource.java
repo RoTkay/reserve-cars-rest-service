@@ -1,42 +1,17 @@
 package edu.resources;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.sql.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReservationResource extends ResourceSupport {
-    private int id;
+    private int identifier;
     private Date dateFrom;
     private Date dateTo;
-
-    public ReservationResource() {}
-    public ReservationResource(int id, Date dateFrom, Date dateTo) {
-        this.id = id;
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
-    }
-
-    public int getID() {
-        return id;
-    }
-
-    public void setID(int id) {
-        this.id = id;
-    }
-
-    public Date getDateFrom() {
-        return dateFrom;
-    }
-
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
-    }
-
-    public Date getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
-    }
 }

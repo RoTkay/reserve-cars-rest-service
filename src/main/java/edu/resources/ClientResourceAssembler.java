@@ -17,11 +17,11 @@ public class ClientResourceAssembler extends ResourceAssemblerSupport<Client, Cl
     @Override
     public ClientResource toResource(Client client) {
         ClientResource resource = createResourceWithId(client.getId(), client);
-        resource.setID(client.getId());
+        resource.setIdentifier(client.getId());
         resource.setPassportInformation(client.getPassportInformation());
 
         resource.add(linkTo(methodOn(ClientRestController.class).getAllClients()).withRel("clients"));
-        resource.add(linkTo(methodOn(ClientRestController.class).getClientAllReservations(resource.getID())).withRel("reservations"));
+        resource.add(linkTo(methodOn(ClientRestController.class).getClientAllReservations(resource.getIdentifier())).withRel("reservations"));
         return resource;
     }
 }

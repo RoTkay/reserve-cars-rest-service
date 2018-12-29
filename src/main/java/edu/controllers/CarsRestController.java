@@ -68,10 +68,10 @@ public class CarsRestController {
                                     @PathVariable int id) {
         car.setId(id);
         carDao.update(car);
-        URI createdUri = ServletUriComponentsBuilder.fromCurrentRequest()
+        URI updatedUri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .buildAndExpand(car.getId())
                 .toUri();
-        return ResponseEntity.created(createdUri).build();
+        return ResponseEntity.ok(updatedUri);
     }
 
     @GetMapping("/{id}/reservations")

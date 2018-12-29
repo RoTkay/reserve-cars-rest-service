@@ -19,7 +19,7 @@ public class CarResourceAssembler extends ResourceAssemblerSupport<Car, CarResou
         CarResource resource = createResourceWithId(car.getId(), car);
         resource.setDescription(car.getDescription());
         resource.setPrice(car.getPrice());
-        resource.setID(car.getId());
+        resource.setIdentifier(car.getId());
 
         resource.add(linkTo(methodOn(CarsRestController.class).getAllCars()).withRel("all-cars"));
         resource.add(linkTo(methodOn(CarsRestController.class).getCarAllReservations(car.getId())).withRel("reservations"));
